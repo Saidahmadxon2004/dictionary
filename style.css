@@ -374,6 +374,7 @@ ul li::before {
 }
 
 .synonum_title {
+  color: var(--back-4);
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
