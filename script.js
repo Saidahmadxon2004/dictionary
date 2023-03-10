@@ -12,6 +12,8 @@ const loaderToggle = (info) => {
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   async function getWord() {
+    document.querySelector(".syn").innerHTML = "";
+    document.querySelector(".body__footer").innerHTML = "";
     const li = document.querySelectorAll("li");
     const wordS = document.getElementById("getword").value;
     const sField = document.getElementById("getword");
@@ -123,13 +125,37 @@ form.addEventListener("submit", (e) => {
           fistTime = false;
         }
       }
-
+      let syns;
       document.getElementById("word").textContent = word;
       document.getElementById("pron").textContent = pron;
+      if (data.meanings[0].synonyms.length) {
+        syns = data.meanings[0].synonyms;
+      } else {
+        syns = "sinonim mavjud emas";
+      }
       document.querySelector(".syn").innerHTML = `<div class="synonum">
-      <p class="synonum_title">Synonyms</p>
-      <p class="synonum_response">${data.meanings[0].synonyms}</p>
+      <div class="synonum_title">Synonyms</div>
+      <div class="synonum_response">${syns}</div>
   </div>`;
+      document.querySelector(
+        ".body__footer"
+      ).innerHTML = `<div class="source">Source</div>
+<a class="wikpedia" target="blank" href="${data.sourceUrls}"
+    ><svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="14"
+      height="14"
+      viewBox="0 0 14 14"
+    >
+      <path
+        fill="none"
+        stroke="#838383"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="1.5"
+        d="M6.09 3.545H2.456A1.455 1.455 0 0 0 1 5v6.545A1.455 1.455 0 0 0 2.455 13H9a1.455 1.455 0 0 0 1.455-1.455V7.91m-5.091.727 7.272-7.272m0 0H9m3.636 0V5"
+      /></svg
+  >${data.sourceUrls}</a>`;
 
       meaning.classList.remove("remove");
     } catch (err) {
@@ -139,13 +165,9 @@ form.addEventListener("submit", (e) => {
       tittle.classList.add("remove");
       addSound.classList.add("remove");
     }
-    form.reset();
   }
   getWord();
 });
-
-//Change theme
-
 const toggleButton = document.getElementById("toggle-button");
 const element = document.querySelector("body");
 
@@ -174,3 +196,4 @@ toggleButton.addEventListener("click", function () {
     });
   }
 });
+//Change theme

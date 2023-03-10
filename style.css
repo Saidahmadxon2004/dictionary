@@ -66,6 +66,10 @@ nav {
   font-size: 0.875rem;
   font-weight: 700;
 }
+.synonum_response {
+  display: flex;
+  flex-wrap: wrap;
+}
 
 .options {
   display: flex;
@@ -297,7 +301,10 @@ ul li::before {
   width: 1.5rem;
   margin-left: -1.5rem;
 }
-
+#option {
+  font-family: sans-serif;
+  text-align: center;
+}
 .meaning-title {
   color: #757575;
   font-size: 1rem;
